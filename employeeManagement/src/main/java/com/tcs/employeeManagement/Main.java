@@ -4,18 +4,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import com.tcs.employeeManagement.config.DBConfig;
 import com.tcs.employeeManagement.model.Department;
 import com.tcs.employeeManagement.model.Employee;
 import com.tcs.employeeManagement.model.Organization;
 import com.tcs.employeeManagement.services.DepartmentServices;
-import com.tcs.employeeManagement.services.DepartmentServicesImpl;
 import com.tcs.employeeManagement.services.EmployeeServices;
-import com.tcs.employeeManagement.services.EmployeeServicesImpl;
 import com.tcs.employeeManagement.services.OrganizationServices;
-import com.tcs.employeeManagement.services.OrganizationServicesImpl;
 
 public class Main {
 
@@ -26,6 +22,7 @@ public class Main {
 		EmployeeServices empS = context.getBean(EmployeeServices.class);
 		DepartmentServices deptS = context.getBean(DepartmentServices.class);
 		OrganizationServices orgS = context.getBean(OrganizationServices.class);
+		
 		char ch = 'Y';
 		Scanner sc = new Scanner(System.in);
 		do {
@@ -136,7 +133,7 @@ public class Main {
 					long orgId = sc.nextLong();
 					System.out.println("Enter department name: ");
 					String name = sc.next();
-					if ((deptS.addDepartment(new Department(deptId, orgId, name, null)).equals("Success")))
+					if ((deptS.addDepartment(new Department(deptId, orgId, name)).equals("Success")))
 							System.out.println("Department created succesfully");
 					break;
 				case 2:
@@ -201,7 +198,7 @@ public class Main {
 					String name = sc.next();
 					System.out.println("Enter organization address: ");
 					String address = sc.next();
-					if((orgS.addOrganization(new Organization(orgId, name, address, null, null)).equals("Success")))
+					if((orgS.addOrganization(new Organization(orgId, name, address)).equals("Success")))
 							System.out.println("Organization created successfully");
 					break;
 				case 2:

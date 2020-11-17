@@ -149,8 +149,8 @@ public class OrganizationRepostioryImpl implements OrganizationRepository {
 				org.setId(rs.getLong("id"));
 				org.setName(rs.getString("name"));
 				org.setAddress(rs.getString("address"));
-				org.setEmployees(empR.findByOragnizationId(id).get());
-				org.setDepartments(deptR.findByOragnizationId(id).get());
+			//	org.setEmployees(empR.findByOragnizationId(id).get());
+				//org.setDepartments(deptR.findByOragnizationId(id).get());
 				return Optional.of(org);
 			}
 				
@@ -187,8 +187,8 @@ public class OrganizationRepostioryImpl implements OrganizationRepository {
 				org.setId(rs.getLong("id"));
 				org.setName(rs.getString("name"));
 				org.setAddress(rs.getString("address"));
-				org.setEmployees(empR.findByOragnizationId(org.getId()).get());
-				org.setDepartments(deptR.findByOragnizationId(org.getId()).get());
+				//org.setEmployees(empR.findByOragnizationId(org.getId()).get());
+				//org.setDepartments(deptR.findByOragnizationId(org.getId()).get());
 				orgL.add(org);
 			}
 			return Optional.of(orgL);

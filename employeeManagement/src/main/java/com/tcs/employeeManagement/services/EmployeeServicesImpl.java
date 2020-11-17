@@ -6,8 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tcs.employeeManagement.dao.EmployeeRepository;
-import com.tcs.employeeManagement.dao.EmployeeRepositoryImpl;
+import com.tcs.employeeManagement.repository.EmployeeRepository;
 import com.tcs.employeeManagement.model.Employee;
 
 @Service
@@ -19,37 +18,44 @@ public class EmployeeServicesImpl implements EmployeeServices {
 	@Override
 	public String addEmployeee(Employee employee) {
 		// TODO Auto-generated method stub
-		return empR.addEmployeee(employee);
+		try {
+			empR.save(employee);
+			return "Success";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return "Failure";
 	}
 
 	@Override
 	public String updateEmployee(long id) {
 		// TODO Auto-generated method stub
-		return empR.updateEmployee(id);
+		return null;
 	}
 
 	@Override
 	public String deleteEmployee(long id) {
 		// TODO Auto-generated method stub
-		return empR.deleteEmployee(id);
+		return null;
 	}
 
 	@Override
 	public Optional<Employee> findById(long id) {
 		// TODO Auto-generated method stub
-		return empR.findById(id);
+		return null;
 	}
 
 	@Override
 	public Optional<List<Employee>> getEmployees() {
 		// TODO Auto-generated method stub
-		return empR.getEmployees();
+		return null;
 	}
 
 	@Override
 	public Optional<List<Employee>> findByOragnizationId(long id) {
 		// TODO Auto-generated method stub
-		return empR.findByOragnizationId(id);
+		return null;
 	}
 
 }

@@ -147,7 +147,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 				dept.setId(rs.getLong("id"));
 				dept.setOrganizationId(rs.getLong("organizationId"));
 				dept.setName(rs.getString("name"));
-				dept.setEmployees(empR.findByDepartmentById(id));
+			//	dept.setEmployees(empR.findByDepartmentById(id));
 				return Optional.of(dept);
 			}
 				
@@ -184,7 +184,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 				dept.setId(rs.getLong("id"));
 				dept.setOrganizationId(rs.getLong("organizationId"));
 				dept.setName(rs.getString("name"));
-				dept.setEmployees(findById(dept.getId()).get().getEmployees());
+				//dept.setEmployees(findById(dept.getId()).get().getEmployees());
 				deptL.add(dept);
 			}
 			return Optional.of(deptL);
@@ -222,7 +222,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 				dept.setId(rs.getLong("id"));
 				dept.setOrganizationId(rs.getLong("organizationId"));
 				dept.setName(rs.getString("name"));
-				dept.setEmployees(findById(dept.getId()).get().getEmployees());
+				//dept.setEmployees(findById(dept.getId()).get().getEmployees());
 				deptL.add(dept);
 			}
 			return Optional.of(deptL);

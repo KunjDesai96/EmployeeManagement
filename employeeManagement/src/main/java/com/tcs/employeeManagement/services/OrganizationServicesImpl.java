@@ -41,13 +41,13 @@ public class OrganizationServicesImpl implements OrganizationServices {
 	@Override
 	public Optional<Organization> findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return orgR.findById(id);
 	}
 
 	@Override
 	public Optional<List<Organization>> getOrganizations() {
 		// TODO Auto-generated method stub
-		return null;
+		return Optional.ofNullable(orgR.findAll());
 	}
 
 }

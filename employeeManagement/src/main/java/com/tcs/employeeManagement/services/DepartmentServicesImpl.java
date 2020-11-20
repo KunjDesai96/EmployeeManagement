@@ -42,19 +42,19 @@ public class DepartmentServicesImpl implements DepartmentServices {
 	@Override
 	public Optional<Department> findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return deptR.findById(id);
 	}
 
 	@Override
 	public Optional<List<Department>> getDepartments() {
 		// TODO Auto-generated method stub
-		return null;
+		return Optional.ofNullable(deptR.findAll());
 	}
 
 	@Override
 	public Optional<List<Department>> findByOragnizationId(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return deptR.findByOragnizationId(id);
 	}
 
 }

@@ -43,19 +43,19 @@ public class EmployeeServicesImpl implements EmployeeServices {
 	@Override
 	public Optional<Employee> findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return empR.findById(id);
 	}
 
 	@Override
 	public Optional<List<Employee>> getEmployees() {
 		// TODO Auto-generated method stub
-		return null;
+		return Optional.ofNullable(empR.findAll());
 	}
 
 	@Override
 	public Optional<List<Employee>> findByOragnizationId(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return empR.findByOrganizationId(id);
 	}
 
 }

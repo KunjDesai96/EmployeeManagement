@@ -1,10 +1,13 @@
 package com.tcs.employeeManagement;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.Set;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import com.tcs.employeeManagement.config.DBConfig;
 import com.tcs.employeeManagement.model.Department;
 import com.tcs.employeeManagement.model.Employee;
@@ -57,7 +60,7 @@ public class Main {
 					int age = sc.nextInt();
 					System.out.println("Enter employee position: ");
 					String position = sc.next();
-					Employee employee = new Employee(empId, orgId, deptId, name, age, position);
+					Employee employee = new Employee(empId, name, age, position, deptS.findById(deptId).get(),orgS.findById(orgId).get());
 					if(empS.addEmployeee(employee).equals("Success"))
 						System.out.println("Employee added successfully");
 					else
@@ -132,8 +135,8 @@ public class Main {
 					System.out.println("Enter organization id:");
 					long orgId = sc.nextLong();
 					System.out.println("Enter department name: ");
-					String name = sc.next();
-					if ((deptS.addDepartment(new Department(deptId, orgId, name)).equals("Success")))
+					String name = sc.next();					
+					if ((deptS.addDepartment(new Department(deptId, orgId, name,null)).equals("Success")))
 							System.out.println("Department created succesfully");
 					break;
 				case 2:
@@ -198,7 +201,7 @@ public class Main {
 					String name = sc.next();
 					System.out.println("Enter organization address: ");
 					String address = sc.next();
-					if((orgS.addOrganization(new Organization(orgId, name, address)).equals("Success")))
+					if((orgS.addOrganization(new Organization(orgId, name, address,null)).equals("Success")))
 							System.out.println("Organization created successfully");
 					break;
 				case 2:

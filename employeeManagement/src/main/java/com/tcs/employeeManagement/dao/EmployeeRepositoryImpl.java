@@ -30,8 +30,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		try {
 			pStmt = con.prepareStatement(sql);
 			pStmt.setLong(1, employee.getId());
-			pStmt.setLong(2, employee.getOrganizationId());
-			pStmt.setLong(3, employee.getDepartmentId());
+			//pStmt.setLong(2, employee.getOrganizationId());
+			//pStmt.setLong(3, employee.getDepartmentId());
 			pStmt.setString(4, employee.getName());
 			pStmt.setInt(5, employee.getAge());
 			pStmt.setString(6, employee.getPosition());
@@ -154,8 +154,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 			{
 				Employee emp = new Employee();
 				emp.setId(rs.getLong("id"));
-				emp.setOrganizationId(rs.getLong("organizationId"));
-				emp.setDepartmentId(rs.getLong("departmentId"));
+				//emp.setOrganizationId(rs.getLong("organizationId"));
+				//emp.setDepartmentId(rs.getLong("departmentId"));
 				emp.setName(rs.getString("name"));
 				emp.setAge(rs.getInt("age"));
 				emp.setPosition(rs.getString("position"));
@@ -194,8 +194,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 			{
 				Employee emp = new Employee();
 				emp.setId(rs.getLong("id"));
-				emp.setOrganizationId(rs.getLong("organizationId"));
-				emp.setDepartmentId(rs.getLong("departmentId"));
+				//emp.setOrganizationId(rs.getLong("organizationId"));
+				//emp.setDepartmentId(rs.getLong("departmentId"));
 				emp.setName(rs.getString("name"));
 				emp.setAge(rs.getInt("age"));
 				emp.setPosition(rs.getString("position"));
@@ -234,8 +234,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 			{
 				Employee emp = new Employee();
 				emp.setId(rs.getLong("id"));
-				emp.setOrganizationId(rs.getLong("organizationId"));
-				emp.setDepartmentId(rs.getLong("departmentId"));
+				//emp.setOrganizationId(rs.getLong("organizationId"));
+				//emp.setDepartmentId(rs.getLong("departmentId"));
 				emp.setName(rs.getString("name"));
 				emp.setAge(rs.getInt("age"));
 				emp.setPosition(rs.getString("position"));
@@ -273,8 +273,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 			{
 				Employee emp = new Employee();
 				emp.setId(rs.getLong("id"));
-				emp.setOrganizationId(rs.getLong("organizationId"));
-				emp.setDepartmentId(rs.getLong("departmentId"));
+				//emp.setOrganizationId(rs.getLong("organizationId"));
+				//emp.setDepartmentId(rs.getLong("departmentId"));
 				emp.setName(rs.getString("name"));
 				emp.setAge(rs.getInt("age"));
 				emp.setPosition(rs.getString("position"));

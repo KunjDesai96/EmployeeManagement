@@ -6,6 +6,8 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.tcs.employeeManagement.config.DBConfig;
@@ -88,7 +90,7 @@ public class Main {
 					long id2 = 0;
 					System.out.println("Enter the employee id: ");
 					id2 = sc.nextLong();
-					Optional<Employee> empO = empS.findById(id2);
+					Optional<Employee> empO = empS.findById(id2);					
 					if(empO.isPresent())	
 						System.out.println(empO.get());
 					else	

@@ -7,10 +7,10 @@
 <body>
 <h1>Login Page</h1>
 <div>
-		<form action="" method="post">
+		<form action="/auth/login.html" method="post">
 			<table>
 				<tr>
-					<td>UserName</td>
+					<td>User Name</td>
 					<td><input type="text" name="userName" />
 					<div></div>
 				</tr>

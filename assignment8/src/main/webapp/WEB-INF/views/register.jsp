@@ -9,7 +9,7 @@
 <body>
 	<h1>Registration Page</h1>
 	<div>
-		<form action="" method="post">
+		<form action="/register" method="post">
 			<table>
 				<tr>
 					<td>UserName</td>

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.tcs.employeeManagement.exeception.ResourceNotFoundException;
 import com.tcs.employeeManagement.model.Department;
 import com.tcs.employeeManagement.service.DepartmentServices;
 
@@ -38,9 +39,9 @@ public class DepartmentController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Department>  getDepartmentById(@PathVariable("id") int organizationId)
+	public ResponseEntity<Department>  getDepartmentById(@PathVariable("id") int organizationId) throws ResourceNotFoundException
 	{	
-		Department dept = deptS.findById(organizationId).get();
+		Department dept = deptS.findById(organizationId).orElseThrow(()-> new ResourceNotFoundException("Department not found"));
 		return ResponseEntity.ok(dept);
 	}
 	
@@ -53,8 +54,9 @@ public class DepartmentController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public Map<String, Boolean> deleteDepartmentById(@PathVariable int id)
+	public Map<String, Boolean> deleteDepartmentById(@PathVariable int id) throws ResourceNotFoundException
 	{
+		deptS.findById(id).orElseThrow(()-> new ResourceNotFoundException("Department not found"));
 		deptS.deleteDepartment(id);
 		HashMap<String, Boolean> res =  new HashMap<>();
 		res.put("delete", Boolean.TRUE);
@@ -63,9 +65,9 @@ public class DepartmentController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Department> updateDepartment(@PathVariable("id") int id,  @Valid @RequestBody Department department)
+	public ResponseEntity<Department> updateDepartment(@PathVariable("id") int id,  @Valid @RequestBody Department department) throws ResourceNotFoundException
 	{
-		Department dept = deptS.findById(id).get();
+		Department dept = deptS.findById(id).orElseThrow(()-> new ResourceNotFoundException("Department not found"));
 		department.setId((long) id);
 		dept = deptS.addDepartment(department);
 		return ResponseEntity.ok(dept);	

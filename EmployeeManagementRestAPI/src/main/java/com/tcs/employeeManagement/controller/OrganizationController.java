@@ -20,10 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.tcs.employeeManagement.exeception.ResourceNotFoundException;
 import com.tcs.employeeManagement.model.Organization;
 import com.tcs.employeeManagement.service.OrganizationServices;
-
-
 
 @RestController
 @RequestMapping("/api/v1/organization")
@@ -39,9 +38,9 @@ public class OrganizationController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Organization>  getOrganizationById(@PathVariable("id") int organizationId)
+	public ResponseEntity<Organization>  getOrganizationById(@PathVariable("id") int organizationId) throws ResourceNotFoundException
 	{	
-		Organization org = orgS.findById(organizationId).get();
+		Organization org = orgS.findById(organizationId).orElseThrow(() -> new ResourceNotFoundException("Organization not found."));
 		return ResponseEntity.ok(org);
 	}
 	
@@ -54,8 +53,9 @@ public class OrganizationController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public Map<String, Boolean> deleteOrganizationById(@PathVariable int id)
+	public Map<String, Boolean> deleteOrganizationById(@PathVariable int id) throws ResourceNotFoundException
 	{
+		orgS.findById(id).orElseThrow(() -> new ResourceNotFoundException("Organization not found."));
 		orgS.deleteOrganization(id);
 		HashMap<String, Boolean> res =  new HashMap<>();
 		res.put("delete", Boolean.TRUE);
@@ -64,9 +64,9 @@ public class OrganizationController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Organization> updateOrganization(@PathVariable("id") int id,  @Valid @RequestBody Organization organization)
+	public ResponseEntity<Organization> updateOrganization(@PathVariable("id") int id,  @Valid @RequestBody Organization organization) throws ResourceNotFoundException
 	{
-		Organization org = orgS.findById(id).get();
+		Organization org = orgS.findById(id).orElseThrow(() -> new ResourceNotFoundException("Organization not found."));
 		organization.setId((long) id);
 		org = orgS.addOrganization(organization);
 		return ResponseEntity.ok(org);	

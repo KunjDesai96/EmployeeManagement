@@ -3,6 +3,7 @@ package com.tcs.employeeManagement.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.tcs.employeeManagement.exeception.ResourceNotFoundException;
 import com.tcs.employeeManagement.model.Employee;
 import com.tcs.employeeManagement.service.EmployeeServices;
 
@@ -37,9 +39,9 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Employee>  getEmployeeById(@PathVariable("id") int employeeId)
+	public ResponseEntity<Employee>  getEmployeeById(@PathVariable("id") int employeeId) throws ResourceNotFoundException
 	{	
-		Employee emp = empS.findById(employeeId).get();
+		Employee emp = empS.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException("Emoployee not found."));
 		return ResponseEntity.ok(emp);
 	}
 	
@@ -52,8 +54,9 @@ public class EmployeeController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public Map<String, Boolean> deleteEmployeeById(@PathVariable int id)
+	public Map<String, Boolean> deleteEmployeeById(@PathVariable int id) throws ResourceNotFoundException
 	{
+		empS.findById(id).orElseThrow(() -> new ResourceNotFoundException("Emoployee not found."));
 		empS.deleteEmployee(id);
 		HashMap<String, Boolean> res =  new HashMap<>();
 		res.put("delete", Boolean.TRUE);
@@ -62,9 +65,9 @@ public class EmployeeController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Employee> updateEmployee(@PathVariable("id") int id,  @Valid @RequestBody Employee employee)
+	public ResponseEntity<Employee> updateEmployee(@PathVariable("id") int id,  @Valid @RequestBody Employee employee) throws ResourceNotFoundException
 	{
-		Employee emp = empS.findById(id).get();
+		Employee emp = empS.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee not found"));
 		employee.setId((long) id);
 		emp = empS.addEmployeee(employee);
 		return ResponseEntity.ok(emp);	
